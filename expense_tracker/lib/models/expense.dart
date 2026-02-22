@@ -12,7 +12,7 @@ enum Category { food, travel, leisure, work }
 const categoryIcons = {
   Category.food: Icons.lunch_dining,
   Category.travel: Icons.flight_takeoff,
-  Category.leisure: Icons.movie,
+  Category.leisure: Icons.movie_creation_outlined,
   Category.work: Icons.work,
 };
 
@@ -36,15 +36,12 @@ class Expense {
 }
 
 class ExpenseBucket {
-  const ExpenseBucket({
-    required this.category,
-    required this.expenses,
-  });
+  const ExpenseBucket({required this.category, required this.expenses});
 
   ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
-      : expenses = allExpenses
-            .where((expense) => expense.category == category)
-            .toList();
+    : expenses = allExpenses
+          .where((expense) => expense.category == category)
+          .toList();
 
   final Category category;
   final List<Expense> expenses;

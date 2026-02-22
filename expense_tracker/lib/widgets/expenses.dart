@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:expense_tracker/widgets/chart/chart.dart';
+import 'package:expense_tracker/utils/responsive.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -67,8 +68,15 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    Widget mainContent = const Center(
-      child: Text('No expenses found. Start adding some!'),
+    final deviceType = ResponsiveBreakpoints.getDeviceType(context);
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
+    Widget mainContent = Center(
+      child: Text(
+        'No expenses found. Start adding some!',
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
     );
 
     if (_registeredExpenses.isNotEmpty) {
@@ -78,9 +86,31 @@ class _ExpensesState extends State<Expenses> {
       );
     }
 
+    // Responsive layout: side-by-side on tablet/landscape, stacked on mobile
+    Widget body;
+    if (deviceType == DeviceType.tablet ||
+        (isLandscape && MediaQuery.of(context).size.width > 600)) {
+      body = Row(
+        children: [
+          Expanded(child: Chart(expenses: _registeredExpenses)),
+          Expanded(child: mainContent),
+        ],
+      );
+    } else {
+      body = Column(
+        children: [
+          Chart(expenses: _registeredExpenses),
+          Expanded(child: mainContent),
+        ],
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Expense Tracker'),
+        title: Text(
+          'Flutter Expense Tracker',
+          style: TextStyle(fontSize: ResponsiveFontSizes.title(context)),
+        ),
         actions: [
           IconButton(
             onPressed: _openAddExpenseOverlay,
@@ -88,12 +118,7 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Chart(expenses: _registeredExpenses),
-          Expanded(child: mainContent),
-        ],
-      ),
+      body: body,
     );
   }
 }

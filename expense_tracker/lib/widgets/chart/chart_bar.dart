@@ -9,9 +9,13 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isTablet = MediaQuery.of(context).size.width > 600;
+
+    final horizontalPadding = isTablet ? 6.0 : 4.0;
+
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
         child: FractionallySizedBox(
           heightFactor: fill,
           child: DecoratedBox(
@@ -22,6 +26,7 @@ class ChartBar extends StatelessWidget {
               ),
               color: isDarkMode
                   ? Theme.of(context).colorScheme.secondary
+                  // ignore: deprecated_member_use
                   : Theme.of(context).colorScheme.primary.withOpacity(0.65),
             ),
           ),

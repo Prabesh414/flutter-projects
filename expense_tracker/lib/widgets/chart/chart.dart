@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:expense_tracker/widgets/chart/chart_bar.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/utils/responsive.dart';
 
 class Chart extends StatelessWidget {
   const Chart({super.key, required this.expenses});
@@ -33,11 +34,27 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
+    // Responsive height: smaller in landscape, larger on tablets
+    final chartHeight = isLandscape
+        ? MediaQuery.of(context).size.height * 0.3
+        : MediaQuery.of(context).size.width < 600
+        ? 180.0
+        : 220.0;
+
+    final horizontalPadding = ResponsiveSpacing.horizontal(context);
+    final verticalPadding = ResponsiveSpacing.vertical(context);
+
     return Container(
-      margin: const EdgeInsets.all(16),
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      margin: EdgeInsets.all(horizontalPadding),
+      padding: EdgeInsets.symmetric(
+        vertical: verticalPadding,
+        horizontal: ResponsiveSpacing.small(context),
+      ),
       width: double.infinity,
-      height: 180,
+      height: chartHeight,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         gradient: LinearGradient(
@@ -64,13 +81,15 @@ class Chart extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: ResponsiveSpacing.extraSmall(context) * 3),
           Row(
             children: buckets
                 .map(
                   (bucket) => Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: ResponsiveSpacing.extraSmall(context),
+                      ),
                       child: Icon(
                         categoryIcons[bucket.category],
                         color: isDarkMode

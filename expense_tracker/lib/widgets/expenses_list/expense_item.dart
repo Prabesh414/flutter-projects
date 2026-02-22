@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:expense_tracker/utils/responsive.dart';
 
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem({super.key, required this.expense});
@@ -8,24 +9,43 @@ class ExpenseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final horizontalPadding = ResponsiveSpacing.horizontal(context);
+    final verticalPadding = ResponsiveSpacing.vertical(context);
+    final fontSize = ResponsiveFontSizes.body(context);
+
     return Card(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontalPadding * 0.5,
+          vertical: verticalPadding * 0.5,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(expense.title),
-            const SizedBox(height: 4.0),
-
+            Text(
+              expense.title,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontSize: ResponsiveFontSizes.title(context),
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            SizedBox(height: ResponsiveSpacing.extraSmall(context)),
             Row(
               children: [
-                Text('\$${expense.amount.toStringAsFixed(2)}'),
+                Text(
+                  '\$${expense.amount.toStringAsFixed(2)}',
+                  style: TextStyle(fontSize: fontSize),
+                ),
                 const Spacer(),
                 Row(
                   children: [
-                    Icon(categoryIcons[expense.category]),
-                    const SizedBox(width: 8.0),
-                    Text(expense.formattedDate),
+                    Icon(categoryIcons[expense.category], size: fontSize + 4),
+                    SizedBox(width: ResponsiveSpacing.small(context)),
+                    Text(
+                      expense.formattedDate,
+                      style: TextStyle(fontSize: fontSize - 1),
+                    ),
                   ],
                 ),
               ],
