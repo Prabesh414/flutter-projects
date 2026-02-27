@@ -1,0 +1,4 @@
+// Copy this file to constants.dart and fill in your Firebase project details
+const firebaseBaseUrl = 'YOUR-PROJECT-ID-default-rtdb.firebaseio.com';
+const firebasePath = 'shopping-list.json';
+const firebaseItemPath = 'shopping-list';
