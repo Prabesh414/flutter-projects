@@ -1,0 +1,20 @@
+﻿Analyzing favorite_places...                                    
+
+   info - 'background' is deprecated and shouldn't be used. Use surface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\main.dart:10:3 - deprecated_member_use
+   info - 'useMaterial3' is deprecated and shouldn't be used. Use a ThemeData constructor (.from, .light, or .dark) instead. These constructors all have a useMaterial3 argument, and they set appropriate default values based on its value. See the useMaterial3 API documentation for full details. This feature was deprecated after v3.13.0-0.2.pre - lib\main.dart:14:3 - deprecated_member_use
+   info - 'background' is deprecated and shouldn't be used. Use surface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\main.dart:15:40 - deprecated_member_use
+   info - Parameter 'key' could be a super parameter - lib\main.dart:29:9 - use_super_parameters
+  error - Classes can only extend other classes - lib\providers\user_places.dart:25:34 - extends_non_class
+  error - Too many positional arguments: 0 expected, but 1 found - lib\providers\user_places.dart:26:32 - extra_positional_arguments
+  error - Undefined name 'state' - lib\providers\user_places.dart:46:5 - undefined_identifier
+  error - Undefined name 'state' - lib\providers\user_places.dart:70:5 - undefined_identifier
+  error - Undefined name 'state' - lib\providers\user_places.dart:70:27 - undefined_identifier
+  error - The function 'StateNotifierProvider' isn't defined - lib\providers\user_places.dart:75:5 - undefined_function
+   info - 'onBackground' is deprecated and shouldn't be used. Use onSurface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\screens\place_detail.dart:45:60 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\image_input.dart:62:56 - deprecated_member_use
+   info - 'onBackground' is deprecated and shouldn't be used. Use onSurface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\widgets\location_input.dart:77:46 - deprecated_member_use
+   info - 'onBackground' is deprecated and shouldn't be used. Use onSurface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\widgets\location_input.dart:92:48 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\widgets\location_input.dart:106:60 - deprecated_member_use
+   info - 'onBackground' is deprecated and shouldn't be used. Use onSurface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\widgets\places_list.dart:17:50 - deprecated_member_use
+   info - 'onBackground' is deprecated and shouldn't be used. Use onSurface instead. This feature was deprecated after v3.18.0-0.1.pre - lib\widgets\places_list.dart:33:50 - deprecated_member_use
+
